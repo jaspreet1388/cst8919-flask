@@ -67,3 +67,22 @@ Copy
 Edit
 http://localhost:5000
 ```
+
+### Create .env File
+In the root of your project, create a file named .env with the following content:
+```
+APP_SECRET_KEY=your_flask_secret_key_here
+AUTH0_CLIENT_ID=your_auth0_client_id
+AUTH0_CLIENT_SECRET=your_auth0_client_secret
+AUTH0_DOMAIN=https://your-tenant-name.us.auth0.com
+AUTH0_CALLBACK_URL=http://localhost:5000/callback
+```
+---
+### Run the App
+```
+export FLASK_APP=app.py
+flask run
+```
+
+### Then visit: http://localhost:5000
+
