@@ -86,5 +86,5 @@ flask run
 
 ### Then visit: http://localhost:5000
 
-### Demo Youtube URl -  https://www.youtube.com/watch?v=Iw-LK5xXB3k
+### Demo Youtube URL -  https://www.youtube.com/watch?v=Iw-LK5xXB3k
 
