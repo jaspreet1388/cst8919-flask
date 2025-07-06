@@ -1,0 +1,4 @@
+{'event': 'user_login', 'user_id': 'google-oauth2|101704984144416262774', 'email': 'jugatsingh91@gmail.com', 'timestamp': '2025-07-06T20:13:47.023800'}
+{'event': 'protected_access', 'user_id': 'google-oauth2|101704984144416262774', 'email': 'jugatsingh91@gmail.com', 'timestamp': '2025-07-06T20:13:56.161223'}
+{'event': 'protected_access', 'user_id': 'google-oauth2|101704984144416262774', 'email': 'jugatsingh91@gmail.com', 'timestamp': '2025-07-06T20:14:01.846649'}
+{'event': 'unauthorized_access', 'path': '/protected', 'timestamp': '2025-07-06T20:14:24.877577'}
