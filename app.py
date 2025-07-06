@@ -21,7 +21,7 @@ auth0 = oauth.register(
 
 @app.route('/')
 def home():
-    return 'Welcome! <a href="/login">Login</a>'
+    return 'Welcomeee! <a href="/login">Login</a>'
 
 @app.route('/login')
 def login():
