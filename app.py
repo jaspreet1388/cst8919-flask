@@ -26,7 +26,7 @@ Session(app)
 
 # Setup structured logging (to terminal and optionally to file)
 logging.basicConfig(level=logging.INFO)
-handler = logging.FileHandler("app.log")  # Optional: log to file
+handler = logging.FileHandler("appdebug.log")  # Optional: log to file
 handler.setLevel(logging.INFO)
 app.logger.addHandler(handler)
 
