@@ -1,4 +1,9 @@
 from flask import Flask, redirect, url_for, session, request
+try:
+    import flask_session
+    print("✅ Flask-Session is installed.")
+except ImportError:
+    print("❌ Flask-Session is missing.")
 from flask_session import Session
 from authlib.integrations.flask_client import OAuth
 from dotenv import load_dotenv
@@ -18,7 +23,7 @@ app.config.update(
     SESSION_TYPE='filesystem',
     SESSION_PERMANENT=False,
     SESSION_USE_SIGNER=True,
-    SESSION_FILE_DIR='./.flask_session/',
+    SESSION_FILE_DIR='/tmp/flask_session/',
     SESSION_COOKIE_SAMESITE="Lax",
     SESSION_COOKIE_SECURE=False  # Set to True in production (HTTPS)
 )
