@@ -30,11 +30,28 @@ app.config.update(
 )
 Session(app)
 
+
+# Monkey patch to fix TypeError: cannot use string pattern on bytes-like object
+from flask_session import sessions
+original_save_session = sessions.FilesystemSessionInterface.save_session
+
+def patched_save_session(self, app, session, response):
+    if isinstance(session.sid, bytes):
+        session.sid = session.sid.decode('utf-8')
+    return original_save_session(self, app, session, response)
+
+sessions.FilesystemSessionInterface.save_session = patched_save_session
+
 # Setup structured logging (to terminal and optionally to file)
 logging.basicConfig(level=logging.INFO)
 handler = logging.FileHandler("appdebug.log")  # Optional: log to file
 handler.setLevel(logging.INFO)
 app.logger.addHandler(handler)
+
+import sys
+stream_handler = logging.StreamHandler(sys.stdout)
+stream_handler.setLevel(logging.INFO)
+app.logger.addHandler(stream_handler)
 
 # Register Auth0 OAuth
 oauth = OAuth(app)
