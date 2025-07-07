@@ -33,7 +33,7 @@ Session(app)
 
 # Monkey patch to fix TypeError: cannot use string pattern on bytes-like object
 from flask_session import sessions
-original_save_session = sessions.FilesystemSessionInterface.save_session
+original_save_session = sessions.FileSystemSessionInterface.save_session  
 
 def patched_save_session(self, app, session, response):
     if isinstance(session.sid, bytes):
