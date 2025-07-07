@@ -40,7 +40,13 @@ def patched_save_session(self, app, session, response):
     session_id = session.sid
     if isinstance(session_id, bytes):
         session_id = session_id.decode('utf-8')
-    response.set_cookie(app.session_cookie_name, session_id, **self.get_cookie_params(app))
+    response.set_cookie(
+        app.session_cookie_name,
+        session_id,
+        httponly=True,
+        samesite=app.config.get("SESSION_COOKIE_SAMESITE", "Lax"),
+        secure=app.config.get("SESSION_COOKIE_SECURE", False)
+    )
     return original_save_session(self, app, session, response)
 
 FileSystemSessionInterface.save_session = patched_save_session
