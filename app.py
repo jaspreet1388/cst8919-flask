@@ -19,6 +19,7 @@ app = Flask(__name__)
 app.secret_key = os.environ["APP_SECRET_KEY"]
 
 # Configure server-side sessions to prevent CSRF mismatch
+app.session_cookie_name = app.config.get("SESSION_COOKIE_NAME", "session")
 app.config.update(
     SESSION_TYPE='filesystem',
     SESSION_PERMANENT=False,
