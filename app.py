@@ -40,7 +40,7 @@ def patched_save_session(self, app, session, response):
         session.sid = session.sid.decode('utf-8')
     return original_save_session(self, app, session, response)
 
-sessions.FilesystemSessionInterface.save_session = patched_save_session
+sessions.FileSystemSessionInterface.save_session = patched_save_session
 
 # Setup structured logging (to terminal and optionally to file)
 logging.basicConfig(level=logging.INFO)
