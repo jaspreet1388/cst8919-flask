@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from datetime import datetime
 import os
 import logging
+import sys
 
 # Load environment variables
 load_dotenv()
@@ -18,51 +19,23 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.environ["APP_SECRET_KEY"]
 
-# Configure server-side sessions to prevent CSRF mismatch
-app.session_cookie_name = app.config.get("SESSION_COOKIE_NAME", "session")
+# Configure server-side sessions
 app.config.update(
     SESSION_TYPE='filesystem',
     SESSION_PERMANENT=False,
     SESSION_USE_SIGNER=True,
     SESSION_FILE_DIR='/tmp/flask_session/',
     SESSION_COOKIE_SAMESITE="Lax",
-    SESSION_COOKIE_SECURE=False  # Set to True in production (HTTPS)
+    SESSION_COOKIE_SECURE=False  # Change to True in production (HTTPS)
 )
 Session(app)
 
-
-# Monkey patch to fix TypeError: cannot use string pattern on bytes-like object
-from flask_session.sessions import FileSystemSessionInterface
-
-original_save_session = FileSystemSessionInterface.save_session
-
-def patched_save_session(self, app, session, response):
-    session_id = session.sid
-
-    # Convert bytes to str if needed
-    if isinstance(session_id, bytes):
-        session_id = session_id.decode('utf-8')
-
-    response.set_cookie(
-        app.session_cookie_name,
-        session_id,
-        httponly=True,
-        samesite=app.config.get("SESSION_COOKIE_SAMESITE", "Lax"),
-        secure=app.config.get("SESSION_COOKIE_SECURE", False)
-    )
-
-    return original_save_session(self, app, session, response)
-
-FileSystemSessionInterface.save_session = patched_save_session
-
-
-# Setup structured logging (to terminal and optionally to file)
+# Setup logging (optional file + stdout)
 logging.basicConfig(level=logging.INFO)
-handler = logging.FileHandler("appdebug.log")  # Optional: log to file
-handler.setLevel(logging.INFO)
-app.logger.addHandler(handler)
+file_handler = logging.FileHandler("appdebug.log")
+file_handler.setLevel(logging.INFO)
+app.logger.addHandler(file_handler)
 
-import sys
 stream_handler = logging.StreamHandler(sys.stdout)
 stream_handler.setLevel(logging.INFO)
 app.logger.addHandler(stream_handler)
@@ -95,7 +68,6 @@ def callback():
         userinfo = token['userinfo']
         session['user'] = userinfo
 
-        # ✅ Log successful login
         app.logger.info({
             "event": "user_login",
             "user_id": userinfo.get("sub"),
@@ -118,7 +90,6 @@ def dashboard():
 @app.route('/protected')
 def protected():
     if 'user' not in session:
-        # ✅ Log unauthorized access
         app.logger.warning({
             "event": "unauthorized_access",
             "path": request.path,
@@ -126,7 +97,6 @@ def protected():
         })
         return redirect(url_for('login'))
 
-    # ✅ Log valid access to protected route
     user = session['user']
     app.logger.info({
         "event": "protected_access",
@@ -141,4 +111,3 @@ def logout():
     session.clear()
     return redirect(f"https://{os.environ['AUTH0_DOMAIN']}/v2/logout?" +
                     f"returnTo={url_for('home', _external=True)}&client_id={os.environ['AUTH0_CLIENT_ID']}")
-
