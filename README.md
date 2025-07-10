@@ -91,6 +91,29 @@ For azure the app will work once code is committed on github.
 
 <img width="1352" height="697" alt="image" src="https://github.com/user-attachments/assets/a0464d65-72eb-4e8f-8b09-70fa1f3f19e3" />
 
+<img width="1897" height="700" alt="image" src="https://github.com/user-attachments/assets/337bcff9-c014-4ad5-bd45-62ac31de089f" />
+
+<img width="1912" height="796" alt="image" src="https://github.com/user-attachments/assets/b24872aa-f793-4f91-a5b5-09b79635f548" />
+
+<img width="1920" height="492" alt="image" src="https://github.com/user-attachments/assets/46814b3c-33fa-40a7-8f5e-00a4b1ef184b" />
+
+<img width="1490" height="327" alt="image" src="https://github.com/user-attachments/assets/f124ee7f-651d-4e5a-9a7b-c213e44a71f7" />
+
+<img width="1862" height="733" alt="image" src="https://github.com/user-attachments/assets/1edaf909-af72-4443-b101-c60037649edf" />
+
+<img width="1783" height="720" alt="image" src="https://github.com/user-attachments/assets/dd1bcc82-d00c-45b1-9abb-ef7ef50f93d3" />
+
+<img width="1908" height="802" alt="image" src="https://github.com/user-attachments/assets/5e9fa987-04a8-4278-8592-5d253eebacc2" />
+
+
+
+
+
+
+
+
+
+
 
 ### Then visit: http://localhost:5000
 
