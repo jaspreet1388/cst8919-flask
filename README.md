@@ -115,7 +115,12 @@ For azure the app will work once code is committed on github.
 
 
 
-### Then visit: http://localhost:5000
+### Then visit URl :
+- http://localhost:5000
+- https://webappportal-bffzhgfjcdhmfjc7.canadacentral-01.azurewebsites.net/
+Note : URL will only work when app is running on azure or locally
 
-### Demo Youtube URL -  (part1) https://youtu.be/OO5-5pQHF6Y
+### Demo Youtube URL -  
+- (part1) https://youtu.be/OO5-5pQHF6Y
+- (part2) 
 
