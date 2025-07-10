@@ -76,13 +76,21 @@ AUTH0_CLIENT_ID=your_auth0_client_id
 AUTH0_CLIENT_SECRET=your_auth0_client_secret
 AUTH0_DOMAIN=https://your-tenant-name.us.auth0.com
 AUTH0_CALLBACK_URL=http://localhost:5000/callback
+
+Note - Same is uploade to the azure for azure app to work with this environment
 ```
 ---
 ### Run the App
 ```
 export FLASK_APP=app.py
-flask run
+flask run  (local)
+For azure the app will work once code is committed on github.
+
 ```
+### Screenshots:
+
+<img width="1352" height="697" alt="image" src="https://github.com/user-attachments/assets/a0464d65-72eb-4e8f-8b09-70fa1f3f19e3" />
+
 
 ### Then visit: http://localhost:5000
 
